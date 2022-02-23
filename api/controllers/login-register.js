@@ -1,13 +1,20 @@
-exports.login = function () {
+const passport = require("passport");
+const User = require("./../model/User");
+const bcrypt = require("bcryptjs");
+
+exports.login = function (req, res) {
 	// Login
+	console.log("I am in log in!!");
 	passport.authenticate("local", {
-		successRedirect: "/dashboard",
-		failureRedirect: "/users/login",
+		successRedirect: "http://localhost:8080/",
+		failureRedirect: "/login",
 		failureFlash: true,
-	})(req, res, next);
+	});
+	res.send("redirected!");
 };
 
-exports.register = function () {
+exports.register = function (req, res, next) {
+	console.log("I am in register!!");
 	const { name, email, password, password2 } = req.body;
 	let errors = [];
 
@@ -23,25 +30,26 @@ exports.register = function () {
 		errors.push({ msg: "Password must be at least 6 characters" });
 	}
 
-	if (errors.length > 0) {
-		res.render("register", {
-			errors,
-			name,
-			email,
-			password,
-			password2,
-		});
-	} else {
+	// if (errors.length > 0) {
+	// 	res.render("register", {
+	// 		errors,
+	// 		name,
+	// 		email,
+	// 		password,
+	// 		password2,
+	// 	});
+	// }
+	else {
 		User.findOne({ email: email }).then((user) => {
 			if (user) {
 				errors.push({ msg: "Email already exists" });
-				res.render("register", {
-					errors,
-					name,
-					email,
-					password,
-					password2,
-				});
+				// res.render("register", {
+				// 	errors,
+				// 	name,
+				// 	email,
+				// 	password,
+				// 	password2,
+				// });
 			} else {
 				const newUser = new User({
 					name,
@@ -56,11 +64,12 @@ exports.register = function () {
 						newUser
 							.save()
 							.then((user) => {
-								req.flash(
-									"success_msg",
-									"You are now registered and can log in"
-								);
-								res.redirect("/users/login");
+								res.send(user);
+								// req.flash(
+								// 	"success_msg",
+								// 	"You are now registered and can log in"
+								// );
+								// res.redirect("/users/login");
 							})
 							.catch((err) => console.log(err));
 					});

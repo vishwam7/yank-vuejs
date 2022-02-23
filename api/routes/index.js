@@ -3,9 +3,11 @@ const router = express.Router();
 const path = require("path");
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const loginRegister = require("./../controllers/login-register");
+const products = require("./../controllers/products");
 
-router.get("/login", forwardAuthenticated, loginRegister.login);
+router.post("/login", forwardAuthenticated, loginRegister.login);
 router.post("/register", loginRegister.register);
+router.get("/products", products.getAll);
 router.get("/dashboard", ensureAuthenticated);
 
 module.exports = router;
