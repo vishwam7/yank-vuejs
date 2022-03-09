@@ -6,6 +6,7 @@ const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
 const expressLayouts = require("express-ejs-layouts");
+require("dotenv").config({ path: "./config.env" });
 
 const app = express();
 

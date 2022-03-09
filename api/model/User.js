@@ -1,4 +1,6 @@
+const crypto = require("crypto");
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
 	name: {
@@ -24,6 +26,11 @@ const UserSchema = new mongoose.Schema({
 			message: "Passwords are not same",
 		},
 	},
+	role: {
+		type: String,
+		enum: ["user", "user1", "user2", "user3"],
+		default: "user",
+	},
 	date: {
 		type: Date,
 		default: Date.now,
@@ -38,7 +45,7 @@ const UserSchema = new mongoose.Schema({
 	},
 });
 
-userSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function (next) {
 	//Only run this function if password was actually modified
 	if (!this.isModified("password")) return next();
 
@@ -50,27 +57,27 @@ userSchema.pre("save", async function (next) {
 	next();
 });
 
-userSchema.pre("save", function (next) {
+UserSchema.pre("save", function (next) {
 	if (!this.isModified("password") || this.isNew) return next();
 
 	this.passwordChangedAt = Date.now() - 1000;
 	next();
 });
 
-userSchema.pre(/^find/, function (next) {
+UserSchema.pre(/^find/, function (next) {
 	//this points to the current query
 	this.find({ active: { $ne: false } });
 	next();
 });
 
-userSchema.methods.correctPassword = async function (
+UserSchema.methods.correctPassword = async function (
 	candidatePassword,
 	userPassword
 ) {
 	return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+UserSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 	if (this.passwordChangedAt) {
 		const changedTimestamp = parseInt(
 			this.passwordChangedAt.getTime() / 1000,
@@ -82,7 +89,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 	return false;
 };
 
-userSchema.methods.createPasswordResetToken = function () {
+UserSchema.methods.createPasswordResetToken = function () {
 	const resetToken = crypto.randomBytes(32).toString("hex");
 
 	this.passwordResetToken = crypto
