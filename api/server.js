@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
+const expressLayouts = require("express-ejs-layouts");
+require("dotenv").config({ path: "./config.env" });
 
 const app = express();
 
@@ -16,7 +18,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-//session setup
 // Express session
 app.use(
 	session({
@@ -47,6 +48,11 @@ app.get("/", function (req, res, next) {
 	next();
 });
 
+// EJS
+app.use(expressLayouts);
+app.set("view engine", "ejs");
+
+//routes
 app.use("/", require("./routes/index"));
 
 const port = process.env.port || 5000;
