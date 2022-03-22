@@ -58,7 +58,6 @@ import Card from "@/common/components/layout/Card";
 import Search from "@/common/components/Search";
 import Price from "@/common/components/Price";
 import priceData from "@/static/priceData.js";
-import {getAllProducts} from '../services/authenticateService';
 import categories from "@/static/categories";
 export default {
   name: "Default",
@@ -84,12 +83,6 @@ export default {
     
   },
   methods: {
-    getAllProducts(){
-      getAllProducts().then(response =>{
-        console.log(response)
-        this.priceData = response
-      })
-    },
     filterCategory(event) {
         this.categories.forEach(c => {
           c.name === event ? c.active = true : c.active = false;
@@ -108,8 +101,7 @@ export default {
       to.query.favorite ? this.filterFavorite() : to.query.sectors ? this.filterCategory(to.query.sectors) : null;
     }
   },
-  mounted() {    
-    this.getAllProducts();
+  mounted() {
     const route = this.$route;
     route.query.favorite ? this.filterFavorite() : route.query.sectors ? this.filterCategory(route.query.sectors) : null;
   }
