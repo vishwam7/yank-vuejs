@@ -70015,23 +70015,23 @@ code {
 .quick-search.quick-search-inline .dropdown-menu {
   padding: 1.5rem;
 }
-.quick-search.quick-search-offcanvas1 .quick-search-form {
+.quick-search.quick-search-offcanvas .quick-search-form {
   margin-bottom: 1.5rem;
 }
-.quick-search.quick-search-offcanvas1 .quick-search-form .form-control {
+.quick-search.quick-search-offcanvas .quick-search-form .form-control {
   font-size: 1rem;
   font-weight: 500;
 }
-.quick-search.quick-search-offcanvas1 .quick-search-form .input-group:before {
+.quick-search.quick-search-offcanvas .quick-search-form .input-group:before {
   right: 0;
 }
-.quick-search.quick-search-offcanvas1 .quick-search-form .input-group .input-group-prepend .input-group-text {
+.quick-search.quick-search-offcanvas .quick-search-form .input-group .input-group-prepend .input-group-text {
   padding-left: 0;
 }
-.quick-search.quick-search-offcanvas1 .quick-search-form .input-group .input-group-append .input-group-text {
+.quick-search.quick-search-offcanvas .quick-search-form .input-group .input-group-append .input-group-text {
   padding-right: 0;
 }
-.quick-search.quick-search-offcanvas1 .quick-search-wrapper {
+.quick-search.quick-search-offcanvas .quick-search-wrapper {
   display: block;
 }
 
@@ -72659,42 +72659,42 @@ code {
   right: 0;
 }
 
-.offcanvas1,
-.offcanvas1-mobile {
+.offcanvas,
+.offcanvas-mobile {
   flex-shrink: 0 !important;
 }
-.offcanvas1 .offcanvas1-header.offcanvas1-header-navs,
-.offcanvas1-mobile .offcanvas1-header.offcanvas1-header-navs {
+.offcanvas .offcanvas-header.offcanvas-header-navs,
+.offcanvas-mobile .offcanvas-header.offcanvas-header-navs {
   position: relative;
 }
-.offcanvas1 .offcanvas1-header.offcanvas1-header-navs .offcanvas1-close,
-.offcanvas1-mobile .offcanvas1-header.offcanvas1-header-navs .offcanvas1-close {
+.offcanvas .offcanvas-header.offcanvas-header-navs .offcanvas-close,
+.offcanvas-mobile .offcanvas-header.offcanvas-header-navs .offcanvas-close {
   position: absolute;
   top: 0;
   right: 0;
 }
-.offcanvas1 .offcanvas1-content .offcanvas1-demo,
-.offcanvas1-mobile .offcanvas1-content .offcanvas1-demo {
+.offcanvas .offcanvas-content .offcanvas-demo,
+.offcanvas-mobile .offcanvas-content .offcanvas-demo {
   border: 5px solid #EBEDF3;
 }
-.offcanvas1 .offcanvas1-content .offcanvas1-demo.offcanvas1-demo-active,
-.offcanvas1-mobile .offcanvas1-content .offcanvas1-demo.offcanvas1-demo-active {
+.offcanvas .offcanvas-content .offcanvas-demo.offcanvas-demo-active,
+.offcanvas-mobile .offcanvas-content .offcanvas-demo.offcanvas-demo-active {
   border: 5px solid #3699FF;
 }
 
-.offcanvas1 {
+.offcanvas {
   background-color: #ffffff;
   box-shadow: 0px 1px 9px -3px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 991.98px) {
-  .offcanvas1-mobile {
+  .offcanvas-mobile {
     background-color: #ffffff;
     box-shadow: 0px 1px 9px -3px rgba(0, 0, 0, 0.25);
     overflow: auto;
   }
 }
-.offcanvas1 {
+.offcanvas {
   z-index: 1001;
   position: fixed;
   top: 0;
@@ -72703,27 +72703,27 @@ code {
   left: -395px;
   width: 375px;
 }
-.offcanvas1.offcanvas1-on {
+.offcanvas.offcanvas-on {
   transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
   left: 0;
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .offcanvas1 {
+  .offcanvas {
     transition: none !important;
   }
 }
 
-.offcanvas1.offcanvas1-right {
+.offcanvas.offcanvas-right {
   right: -395px;
   left: auto;
 }
-.offcanvas1.offcanvas1-right.offcanvas1-on {
+.offcanvas.offcanvas-right.offcanvas-on {
   transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
   right: 0;
   left: auto;
 }
 
-.offcanvas1-overlay {
+.offcanvas-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -72731,11 +72731,11 @@ code {
   right: 0;
   overflow: hidden;
   z-index: 1000;
-  -webkit-animation: animation-offcanvas1-fade-in 0.6s ease 1;
-          animation: animation-offcanvas1-fade-in 0.6s ease 1;
+  -webkit-animation: animation-offcanvas-fade-in 0.6s ease 1;
+          animation: animation-offcanvas-fade-in 0.6s ease 1;
 }
 
-@-webkit-keyframes animation-offcanvas1-fade-in {
+@-webkit-keyframes animation-offcanvas-fade-in {
   from {
     opacity: 0;
   }
@@ -72744,7 +72744,7 @@ code {
   }
 }
 
-@keyframes animation-offcanvas1-fade-in {
+@keyframes animation-offcanvas-fade-in {
   from {
     opacity: 0;
   }
@@ -72752,27 +72752,27 @@ code {
     opacity: 1;
   }
 }
-.offcanvas1 {
+.offcanvas {
   background: #ffffff;
   box-shadow: 0px 1px 9px -3px rgba(0, 0, 0, 0.25);
 }
 
-.offcanvas1-overlay {
+.offcanvas-overlay {
   background: rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 425px) {
-  .offcanvas1 {
+  .offcanvas {
     width: 90% !important;
   }
 }
 @media (max-width: 991.98px) {
-  [data-offcanvas1-offcanvas1=on] {
+  [data-offcanvas-offcanvas=on] {
     overflow: hidden !important;
   }
 }
 @media (max-width: 991.98px) {
-  .offcanvas1-mobile {
+  .offcanvas-mobile {
     z-index: 1001;
     position: fixed;
     top: 0;
@@ -72781,29 +72781,29 @@ code {
     left: -395px;
     width: 375px;
   }
-  .offcanvas1-mobile.offcanvas1-mobile-on {
+  .offcanvas-mobile.offcanvas-mobile-on {
     transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     left: 0;
   }
 }
 @media screen and (max-width: 991.98px) and (-ms-high-contrast: active), (max-width: 991.98px) and (-ms-high-contrast: none) {
-  .offcanvas1-mobile {
+  .offcanvas-mobile {
     transition: none !important;
   }
 }
 @media (max-width: 991.98px) {
-  .offcanvas1-mobile.offcanvas1-mobile-right {
+  .offcanvas-mobile.offcanvas-mobile-right {
     right: -395px;
     left: auto;
   }
-  .offcanvas1-mobile.offcanvas1-mobile-right.offcanvas1-mobile-on {
+  .offcanvas-mobile.offcanvas-mobile-right.offcanvas-mobile-on {
     transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     right: 0;
     left: auto;
   }
 }
 @media (max-width: 991.98px) {
-  .offcanvas1-mobile-overlay {
+  .offcanvas-mobile-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -72811,12 +72811,12 @@ code {
     right: 0;
     overflow: hidden;
     z-index: 1000;
-    -webkit-animation: animation-offcanvas1-fade-in 0.6s ease 1;
-            animation: animation-offcanvas1-fade-in 0.6s ease 1;
+    -webkit-animation: animation-offcanvas-fade-in 0.6s ease 1;
+            animation: animation-offcanvas-fade-in 0.6s ease 1;
   }
 }
 @media (max-width: 991.98px) {
-  @-webkit-keyframes animation-offcanvas1-fade-in {
+  @-webkit-keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0;
     }
@@ -72824,7 +72824,7 @@ code {
       opacity: 1;
     }
   }
-  @keyframes animation-offcanvas1-fade-in {
+  @keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0;
     }
@@ -72834,23 +72834,23 @@ code {
   }
 }
 @media (max-width: 991.98px) {
-  .offcanvas1-mobile {
+  .offcanvas-mobile {
     background: #ffffff;
     box-shadow: 0px 1px 9px -3px rgba(0, 0, 0, 0.25);
   }
 }
 @media (max-width: 991.98px) {
-  .offcanvas1-mobile-overlay {
+  .offcanvas-mobile-overlay {
     background: rgba(0, 0, 0, 0.1);
   }
 }
 @media (max-width: 425px) {
-  .offcanvas1-mobile {
+  .offcanvas-mobile {
     width: 90% !important;
   }
 }
 @media (max-width: 991.98px) {
-  [data-offcanvas1-offcanvas1-mobile=on] {
+  [data-offcanvas-offcanvas-mobile=on] {
     overflow: hidden !important;
   }
 }
@@ -77973,7 +77973,7 @@ canvas {
 .print-content-only .header-mobile,
 .print-content-only .footer,
 .print-content-only .subheader,
-.print-content-only .offcanvas1 {
+.print-content-only .offcanvas {
     display: none !important;
   }
 }
@@ -79162,12 +79162,12 @@ body {
     right: 0;
     overflow: hidden;
     z-index: 1000;
-    -webkit-animation: animation-offcanvas1-fade-in 0.6s ease 1;
-            animation: animation-offcanvas1-fade-in 0.6s ease 1;
+    -webkit-animation: animation-offcanvas-fade-in 0.6s ease 1;
+            animation: animation-offcanvas-fade-in 0.6s ease 1;
   }
 }
 @media (max-width: 991.98px) {
-  @-webkit-keyframes animation-offcanvas1-fade-in {
+  @-webkit-keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0;
     }
@@ -79175,7 +79175,7 @@ body {
       opacity: 1;
     }
   }
-  @keyframes animation-offcanvas1-fade-in {
+  @keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0;
     }
@@ -79201,7 +79201,7 @@ body {
   }
 }
 @media (max-width: 991.98px) {
-  [data-offcanvas1-header-menu-wrapper=on] {
+  [data-offcanvas-header-menu-wrapper=on] {
     overflow: hidden !important;
   }
 }
@@ -80237,12 +80237,12 @@ body {
     right: 0;
     overflow: hidden;
     z-index: 1000;
-    -webkit-animation: animation-offcanvas1-fade-in 0.6s ease 1;
-            animation: animation-offcanvas1-fade-in 0.6s ease 1;
+    -webkit-animation: animation-offcanvas-fade-in 0.6s ease 1;
+            animation: animation-offcanvas-fade-in 0.6s ease 1;
   }
 }
 @media (max-width: 991.98px) {
-  @-webkit-keyframes animation-offcanvas1-fade-in {
+  @-webkit-keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0;
     }
@@ -80250,7 +80250,7 @@ body {
       opacity: 1;
     }
   }
-  @keyframes animation-offcanvas1-fade-in {
+  @keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0;
     }
@@ -80276,7 +80276,7 @@ body {
   }
 }
 @media (max-width: 991.98px) {
-  [data-offcanvas1-aside=on] {
+  [data-offcanvas-aside=on] {
     overflow: hidden !important;
   }
 }
