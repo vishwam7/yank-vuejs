@@ -11,12 +11,12 @@ const products = require("./../controllers/products");
 // router.post("/register", loginRegister.register);
 
 //NEW advanced routes::
-router.post("/signup", authController.signup);
-router.post("/login", authController.login);
-router.post("/forgotPassword", authController.forgotPassword);
-router.post("/resetPassword/:token", authController.resetPassword);
+router.post("/api/signup", authController.signup);
+router.post("/api/login", authController.login);
+router.post("/api/forgotPassword", authController.forgotPassword);
+router.post("/api/resetPassword/:token", authController.resetPassword);
 
-router.get("/products", products.getAll);
+router.get("/api/products", products.getAll);
 router.get("/dashboard", ensureAuthenticated);
 
 module.exports = router;

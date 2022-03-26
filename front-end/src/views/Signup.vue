@@ -18,6 +18,13 @@
 						class="form-control form-control-lg"
 					/>
 				</div>
+				<div class="form-group">
+					<label>Password Confirm</label>
+					<input
+						type="password"
+						class="form-control form-control-lg"
+					/>
+				</div>
 				<button type="submit" class="btn btn-dark btn-lg btn-block">
 					Sign Up
 				</button>
