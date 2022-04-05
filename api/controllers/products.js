@@ -5,3 +5,7 @@ exports.getAll = async function (req, res) {
 	const products = await Products.find();
 	res.send(products);
 };
+
+exports.buyNow = async function (req, res) {
+	console.log(req.params);
+};

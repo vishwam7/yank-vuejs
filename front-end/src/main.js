@@ -24,6 +24,8 @@ import "./assets/js/pages/features/charts/apexcharts.js?v=7.2.6";
 //end scripts
 // import "./assets/css/style.bundle.css";
 import { createApp } from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
 import App from "./App.vue";
 import Home from "@/views/Home.vue";
 import CustomServicePanelHome from "@/views/CustomServicePanelHome.vue";
@@ -146,4 +148,5 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router);
+app.use(VueAxios, axios);
 app.mount("#app");

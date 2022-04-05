@@ -21,7 +21,7 @@
 				</div>
 				<button
 					type="submit"
-					v-on:click="signIn(email, password)"
+					v-on:click.prevent="signIn(email, password)"
 					class="btn btn-dark btn-lg btn-block"
 				>
 					Sign In
@@ -40,8 +40,13 @@
 </template>
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 
 export default {
+	setup() {
+		const { cookies } = useCookies();
+		return { cookies };
+	},
 	data() {
 		return {
 			email: "",
@@ -51,15 +56,30 @@ export default {
 	},
 	methods: {
 		signIn: function (email, password) {
-			axios
-				.post(`http://localhost:5000/api/login`, {
-					email,
-					password,
-				})
-				.then((response) => {})
-				.catch((e) => {
-					this.errors.push(e);
-				});
+			if (this.cookies.get("jwt") === null) {
+				axios
+					.post(
+						`http://localhost:5000/api/login`,
+						{
+							email,
+							password,
+						},
+						{ withCredentials: false }
+					)
+					.then((response) => {
+						// console.log(response.data.token);
+						console.log(response);
+						//cookies management
+						let my_cookie_value = this.cookies.get("jwt");
+						console.log(my_cookie_value);
+						this.cookies.set("jwt", response.data.token);
+					})
+					.catch((e) => {
+						this.errors.push(e);
+					});
+			} else {
+				this.$router.push("http://localhost:8080");
+			}
 		},
 	},
 };

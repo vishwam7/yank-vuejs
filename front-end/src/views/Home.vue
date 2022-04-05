@@ -12,8 +12,39 @@
 							@filterFavorite="filterFavorite()"
 							:categories="categories"
 							:favoriteActive="favoriteActive"
-						/>
+						>
+							<div class="card-header Cust_card_1 pb-5">
+								<span class="spn_1 mb-5 mt-5"
+									>Meus Créditos</span
+								>
+								<div class="d-flex row Cust_circle">
+									<div class="mr-4">
+										<span class=""
+											><img
+												src="@/assets/media/site-images/chart.png"
+										/></span>
+									</div>
+									<div class="d-flex flex-column row">
+										<span class="color-blue"
+											>R$ 2.560,00</span
+										>
+										<span class="color-orange"
+											>- R$ 480,00</span
+										>
+										<span class="spn_5">05 | Robôs</span>
+									</div>
+								</div>
+								<div class="verRobos mb-5">
+									<a
+										href="#"
+										class="btn btn-white font-weight-bold btn-square mt-5 text-center"
+										>SAIBA MAIS</a
+									>
+								</div>
+							</div>
+						</Card>
 					</div>
+
 					<div class="col-md-9 col-12 mt-5">
 						<Search />
 						<div class="price-area" v-if="!emptyPriceData">
@@ -58,17 +89,21 @@
 import Card from "@/common/components/layout/Card";
 import Search from "@/common/components/Search";
 import Price from "@/common/components/Price";
-import priceData from "@/static/priceData.js";
 import categories from "@/static/categories";
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 
 export default {
+	setup() {
+		const { cookies } = useCookies();
+		return { cookies };
+	},
 	name: "Default",
 	data() {
 		return {
 			categories,
 			favoriteActive: false,
-			priceData,
+			priceData: {},
 			avatarBackgroundImage: {
 				backgroundImage: `url(${require("@/assets/media/site-images/empty.png")})`,
 			},
@@ -108,7 +143,7 @@ export default {
 		},
 	},
 	mounted() {
-		console.log("I am called4");
+		// console.log("I am called4");
 		// const route = this.$route;
 		// route.query.favorite
 		// 	? this.filterFavorite()
@@ -116,7 +151,11 @@ export default {
 		// 	? this.filterCategory(route.query.sectors)
 		// 	: null;
 		axios
-			.get(`http://localhost:5000/api/products`)
+			.get(`http://localhost:5000/api/products`, {
+				headers: {
+					Authorization: `Bearer ${this.cookies.get("jwt")}`,
+				},
+			})
 			.then((response) => {
 				// JSON responses are automatically parsed.
 				this.priceData = response.data;
