@@ -363,6 +363,7 @@
 
 <script>
 import axios from "axios";
+import config from "@/config";
 export default {
 	data() {
 		return {
@@ -394,7 +395,7 @@ export default {
 	},
 	mounted() {
 		axios
-			.get(`http://localhost:5000/api/users/6228e338f2b308da1be09e1f`)
+			.get(`${config.url}/api/users/6228e338f2b308da1be09e1f`)
 			.then((response) => {
 				// JSON responses are automatically parsed.
 				// console.log(response.data.data.data);
