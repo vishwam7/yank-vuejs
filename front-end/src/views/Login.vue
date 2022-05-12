@@ -41,6 +41,7 @@
 <script>
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
+import config from "@/config";
 
 export default {
 	setup() {
@@ -59,7 +60,7 @@ export default {
 			if (this.cookies.get("jwt") === null) {
 				axios
 					.post(
-						`http://localhost:5000/api/login`,
+						`${config.url}/api/login`,
 						{
 							email,
 							password,
@@ -78,7 +79,7 @@ export default {
 						this.errors.push(e);
 					});
 			} else {
-				this.$router.push("http://localhost:8080");
+				this.$router.push("/");
 			}
 		},
 	},

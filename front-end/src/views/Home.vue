@@ -92,6 +92,7 @@ import Price from "@/common/components/Price";
 import categories from "@/static/categories";
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
+import config from "@/config";
 
 export default {
 	setup() {
@@ -151,7 +152,7 @@ export default {
 		// 	? this.filterCategory(route.query.sectors)
 		// 	: null;
 		axios
-			.get(`http://localhost:5000/api/products`, {
+			.get(`${config.url}/api/products`, {
 				headers: {
 					Authorization: `Bearer ${this.cookies.get("jwt")}`,
 				},
