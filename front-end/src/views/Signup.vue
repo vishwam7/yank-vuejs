@@ -95,6 +95,7 @@ export default {
 						let my_cookie_value = this.cookies.get("jwt");
 						console.log(my_cookie_value);
 						this.cookies.set("jwt", response.data.token);
+						this.$router.push("/login");
 					})
 					.catch((e) => {
 						this.errors.push(e);

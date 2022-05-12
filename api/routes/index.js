@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require("path");
 const authController = require("./../controllers/authController");
 const userController = require("./../controllers/userController");
-const products = require("./../controllers/products");
+const products = require("../controllers/productsController");
 
 //OLD basic routes::
 // router.post("/login", forwardAuthenticated, loginRegister.login);
@@ -18,6 +18,7 @@ router.post("/api/resetPassword/:token", authController.resetPassword);
 router.get("/api/users/:id", userController.getUser);
 
 router.get("/api/products", authController.protect, products.getAll);
+router.post("/api/productRegister", products.registerProduct);
 router.get("/api/buyNow/:id", products.buyNow);
 
 router.get("/dashboard", authController.protect);
