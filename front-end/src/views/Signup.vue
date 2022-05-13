@@ -56,7 +56,6 @@
 	</div>
 </template>
 <script>
-
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
 import config from "@/config";
@@ -68,39 +67,38 @@ export default {
 	},
 	data() {
 		return {
-			name:'',
-			email:'',
-			password:'',
-			passwordConfirm:'',
-			errors:[]
+			name: "",
+			email: "",
+			password: "",
+			passwordConfirm: "",
+			errors: [],
 		};
 	},
 	methods: {
 		signUp: function (name, email, password, passwordConfirm) {
-				axios
-					.post(
-						`${config.url}/api/signup`,
-						{
-							name,
-							email,
-							password,
-							passwordConfirm
-						},
-						{ withCredentials: false }
-					)
-					.then((response) => {
-						// console.log(response.data.token);
-						console.log(response);
-						//cookies management
-						let my_cookie_value = this.cookies.get("jwt");
-						console.log(my_cookie_value);
-						this.cookies.set("jwt", response.data.token);
-						this.$router.push("/login");
-					})
-					.catch((e) => {
-						this.errors.push(e);
-					});
-			}
+			axios
+				.post(
+					`${config.url}/api/signup`,
+					{
+						name,
+						email,
+						password,
+						passwordConfirm,
+					},
+					{ withCredentials: false }
+				)
+				.then((response) => {
+					// console.log(response.data.token);
+					console.log(response);
+					//cookies management
+					let my_cookie_value = this.cookies.get("jwt");
+					console.log(my_cookie_value);
+					this.cookies.set("jwt", response.data.token);
+					this.$router.push("/login");
+				})
+				.catch((e) => {
+					this.errors.push(e);
+				});
 		},
 	},
 };
