@@ -1,0 +1,28 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "google",
+    "plugin:prettier/recommended",
+    "plugin:jsdoc/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "script"
+  },
+  "settings": {
+    "jsdoc": {
+      "mode": "typescript"
+    }
+  },
+  "rules": {
+    "prettier/prettier": "warn",
+    "valid-jsdoc": "off",
+    "jsdoc/tag-lines": "off"
+  },
+  "ignorePatterns": "test"
+}
