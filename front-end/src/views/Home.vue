@@ -59,6 +59,7 @@
 								:paragragh="price.paragragh"
 								:favorite="price.favorite"
 								:online="price.online"
+								:price="price.price"
 							/>
 						</div>
 						<div class="col-md-12 col-12" v-else>
