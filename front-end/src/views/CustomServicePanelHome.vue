@@ -63,13 +63,11 @@ import Card from "@/common/components/layout/Card";
 import Search from "@/common/components/Search";
 import Price from "@/common/components/Price";
 import priceData from "@/static/priceData.js";
-import Credits from "@/common/components/Credits";
 export default {
   name: "Default",
   data() {
     return {
       priceData,
-      Credits,
     };
   },
   components: {
