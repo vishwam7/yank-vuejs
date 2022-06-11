@@ -28,7 +28,12 @@ const createSendToken = async (user, statusCode, res) => {
         process.env.NODE_ENV === 'production'
           ? process.env.JWT_COOKIE_CORS_DOMAIN
           : 'localhost',
-      secure: process.env.NODE_ENV === 'production',
+      /**
+       * @description use the example code at the next line when HTTPS is configured
+       * for http environment, secure cookie is rejected by the browser!
+       * @example secure: process.env.NODE_ENV === 'production',
+       */
+      secure: false,
       sameSite: 'lax',
     })
     .status(statusCode)

@@ -55,7 +55,10 @@ app.use(
 
 app.use(
   cors({
-    origin: ['http://localhost:8080', `${process.env.JWT_COOKIE_CORS_DOMAIN}`],
+    origin: [
+      'http://localhost:8080',
+      `http://${process.env.JWT_COOKIE_CORS_DOMAIN}/`,
+    ],
     credentials: true,
     exposedHeaders: ['set-cookie'],
   })
