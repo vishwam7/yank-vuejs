@@ -94,7 +94,7 @@ export default {
     return {
       categories,
       favoriteActive: false,
-      priceData: {},
+      priceData: [],
       avatarBackgroundImage: {
         backgroundImage: `url(${require('@/assets/media/site-images/empty.png')})`,
       },
