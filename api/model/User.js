@@ -43,7 +43,6 @@ const UserSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true,
-    select: false,
   },
   /**
    * @description Determines the stripe customer id

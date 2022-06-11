@@ -1,45 +1,50 @@
 const crypto = require('crypto');
 const {promisify} = require('util');
-const jwt = require('jsonwebtoken');
+const {verify, sign} = require('jsonwebtoken');
 const User = require('./../model/User');
 const catchAsync = require('./../utils/catchAsync');
 const AppErr = require('./../utils/appError');
 const sendEmail = require('./../utils/email');
+const AppError = require('./../utils/appError');
 const stripe = require('stripe')(process.env.STRIPE_API_KEY);
+const jwtSign = promisify(sign);
+const jwtVerify = promisify(verify);
+const cookieTime =
+  parseInt(process.env.JWT_COOKIE_EXPIRES_IN, 10) * 24 * 60 * 60 * 1000;
 
-const signToken = id => {
-  return jwt.sign({id}, process.env.JWT_SECRET, {
+const signToken = async id => {
+  return jwtSign({id}, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
-const createSendToken = (user, statusCode, res) => {
-  const token = signToken(user._id);
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-    domain: ['http://localhost:8080/login', 'http://localhost:8080/signup'],
-  };
-
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-
-  res.cookie('jwt', token, cookieOptions);
-
-  // removes password from output
-  user.password = undefined;
-
-  res.status(statusCode).json({
-    status: 'success',
-    token,
-    data: {
-      user,
-    },
-  });
+const createSendToken = async (user, statusCode, res) => {
+  const token = await signToken(user._id);
+  res
+    .cookie('jwt', token, {
+      maxAge: cookieTime,
+      httpOnly: true,
+      domain: 'localhost',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    })
+    .status(statusCode)
+    .json({
+      status: 'success',
+      token,
+      data: {
+        ...user.toObject(),
+        password: undefined,
+      },
+    });
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({email: req.body.email});
+  if (user) {
+    return next(new AppError('An user with this email already exists', 403));
+  }
+
   const customer = await stripe.customers.create({
     name: req.body.name,
     email: req.body.email,
@@ -55,7 +60,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     stripeCustomerID: customer.id,
   });
 
-  createSendToken(newUser, 201, res);
+  await createSendToken(newUser, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -72,10 +77,10 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   // 3)if everything ok,send token to client
-  createSendToken(user, 200, res);
+  await createSendToken(user, 200, res);
 });
 
-exports.protect = catchAsync(async (req, res, next) => {
+exports.protect = catchAsync(async (req, _res, next) => {
   // 1) Getting token and check if it's there
   let token;
   console.log(req.headers);
@@ -84,6 +89,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
   if (!token) {
     return next(
@@ -91,7 +98,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
   }
   // 2) validate/verification token
-  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const decoded = await jwtVerify(token, process.env.JWT_SECRET);
 
   // 3) If user still exists(checks for deleted user)
   console.log(decoded.id);
@@ -110,12 +117,12 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   // Grant access to protected route
-  req.user = currentUser;
+  req.user = currentUser.toObject();
   next();
 });
 
 exports.restrictTo = (...roles) => {
-  return (req, res, next) => {
+  return (req, _res, next) => {
     // roles['admin', lead - guide].role='user'
     if (!roles.includes(req.user.role)) {
       return next(

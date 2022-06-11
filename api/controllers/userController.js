@@ -1,5 +1,6 @@
 const User = require('./../model/User');
 const catchAsync = require('./../utils/catchAsync');
+const AppError = require('../utils/appError');
 
 exports.getUser = catchAsync(async (req, res, next) => {
   const doc = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -17,5 +18,15 @@ exports.getUser = catchAsync(async (req, res, next) => {
     data: {
       data: doc,
     },
+  });
+});
+
+exports.me = catchAsync(async (req, res, next) => {
+  if (!req.user) {
+    return next(new AppError('Invalid user session', 401));
+  }
+  res.status(200).json({
+    status: 'success',
+    data: req.user,
   });
 });
