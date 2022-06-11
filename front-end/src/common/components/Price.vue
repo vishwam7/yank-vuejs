@@ -129,6 +129,7 @@
 
 <script>
 import axios from 'axios';
+import config from '@/config';
 import Modal from './Modal.vue';
 import {useCookies} from 'vue3-cookies';
 import XIcon from '@heroicons/vue/solid/XIcon';
@@ -222,15 +223,13 @@ export default {
         this.showModal = false;
         this.showCheckoutModal = true;
         const response = await axios.post(
-          `http://localhost:5000/api/buyNow/${this.id}`,
+          `${config.url}/api/buyNow/${this.id}`,
           {
             interval: this.interval,
             intervalCount: this.intervalCount,
           },
           {
-            headers: {
-              Authorization: `Bearer ${this.cookies.get('jwt')}`,
-            },
+            withCredentials: true,
           }
         );
         const appearance = {
