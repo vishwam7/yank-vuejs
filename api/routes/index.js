@@ -20,7 +20,12 @@ router.post('/api/resetPassword/:token', authController.resetPassword);
  * @description User route, used to get the user's profile
  */
 router.get('/api/users/me', authController.protect, userController.me);
-router.get('/api/users/:id', userController.getUser);
+router.post(
+  '/api/users/:id',
+  authController.protect,
+  authController.restrictTo('admin'),
+  adminController.updateUser
+);
 
 router.get('/api/products', authController.protect, products.getAll);
 router.post('/api/productRegister', products.registerProduct);
@@ -36,6 +41,7 @@ router.post('/api/buyNow/:id', authController.protect, products.subscribe);
 router.get(
   '/api/admin/users',
   authController.protect,
+  authController.restrictTo('admin'),
   adminController.getUsers
 );
 

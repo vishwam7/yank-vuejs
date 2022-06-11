@@ -51,6 +51,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  /**
+   * @description Determines if the user is deleted
+   */
+  deleted: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
   subscriptions: {
     type: [
       new mongoose.Schema({
@@ -158,12 +166,6 @@ UserSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
 
   this.passwordChangedAt = Date.now() - 1000;
-  next();
-});
-
-UserSchema.pre(/^find/, function (next) {
-  // this points to the current query
-  this.find({active: {$ne: false}});
   next();
 });
 
