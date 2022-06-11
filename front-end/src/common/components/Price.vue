@@ -74,6 +74,7 @@
                   <option
                     v-for="option in options"
                     :selected="option === intervalCount"
+                    :key="option"
                   >
                     {{ option }}
                   </option>

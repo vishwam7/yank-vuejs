@@ -24,7 +24,10 @@ const createSendToken = async (user, statusCode, res) => {
     .cookie('jwt', token, {
       maxAge: cookieTime,
       httpOnly: true,
-      domain: 'localhost',
+      domain:
+        process.env.NODE_ENV === 'production'
+          ? process.env.JWT_COOKIE_CORS_DOMAIN
+          : 'localhost',
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
     })
