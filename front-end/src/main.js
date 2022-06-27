@@ -90,14 +90,6 @@ const router = createRouter({
       },
     },
     {
-      path: '/payment',
-      component: Payment,
-      name: 'payment',
-      meta: {
-        header: 'button',
-      },
-    },
-    {
       path: '/consumption',
       component: Consumption,
       name: 'consumption',

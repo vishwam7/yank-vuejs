@@ -2,10 +2,10 @@
   <!--begin::Aside-->
   <div class="info-box">
     <div class="row mt-5">
-        <Voltar route="/" />
+      <Voltar route="/" />
       <div class="col-xl-12">
         <div class="d-flex flex-column-fluid row">
-          <div class="col-md-8 col-12 ">
+          <div class="col-md-8 col-12">
             <Plans image="media/site-images/pricing" />
           </div>
           <div class="col-md-4 col-12">
@@ -23,19 +23,17 @@
 </template>
 
 <script>
-import Depositions from "@/common/components/Depositions";
-import Pro from "@/common/components/Pro";
-import Plans from "@/common/components/Plans";
+import Depositions from '@/common/components/Depositions';
+import Plans from '@/common/components/Plans';
 import PricePlan from '@/common/components/PricePlan';
-import Voltar from "@/common/components/layout/Voltar";
+import Voltar from '@/common/components/layout/Voltar';
 
 export default {
   components: {
     Depositions,
-    Pro,
     Plans,
     PricePlan,
-    Voltar
+    Voltar,
   },
 };
 </script>

@@ -24,8 +24,16 @@ const createSendToken = async (user, statusCode, res) => {
     .cookie('jwt', token, {
       maxAge: cookieTime,
       httpOnly: true,
-      domain: 'localhost',
-      secure: process.env.NODE_ENV === 'production',
+      domain:
+        process.env.NODE_ENV === 'production'
+          ? process.env.JWT_COOKIE_CORS_DOMAIN
+          : 'localhost',
+      /**
+       * @description use the example code at the next line when HTTPS is configured
+       * for http environment, secure cookie is rejected by the browser!
+       * @example secure: process.env.NODE_ENV === 'production',
+       */
+      secure: false,
       sameSite: 'lax',
     })
     .status(statusCode)
@@ -119,6 +127,16 @@ exports.protect = catchAsync(async (req, _res, next) => {
   // Grant access to protected route
   req.user = currentUser.toObject();
   next();
+});
+
+exports.logOut = catchAsync(async (req, res) => {
+  if (req.cookies.jwt) {
+    res.clearCookie('jwt');
+  }
+  return res.status(200).json({
+    success: true,
+    msg: 'You have been logged out',
+  });
 });
 
 exports.restrictTo = (...roles) => {

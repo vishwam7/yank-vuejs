@@ -14,7 +14,6 @@
 		<a @click="routingCustomServicePanelHome">Lead Service Panel Home</a>
 		<a @click="routingSearchEmpty">Lead Service Panel Search Empty</a>
 		<a @click="routingAuthorized">Checkout Authorized</a>
-		<a @click="routingPayment">Checkout Payment</a>
 		<a @click="routingPricing">Checkout Pricing</a>
 		<a @click="routingUnauthorized">Checkout Unauthorized</a>
 		<a @click="routingConsumption">Checkout Consumption</a>
