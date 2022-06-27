@@ -187,7 +187,7 @@ export default {
       const {error} = await this.stripe.confirmPayment({
         elements: this.elements,
         confirmParams: {
-          return_url: '/checkout',
+          return_url: 'http://localhost:8080/checkout',
         },
       });
       if (error.type === 'card_error' || error.type === 'validation_error') {

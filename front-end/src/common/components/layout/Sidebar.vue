@@ -81,6 +81,7 @@
             <a
               href="#"
               class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5"
+              v-on:click="logOut"
               >Sign Out</a
             >
           </div>
@@ -353,6 +354,15 @@ export default {
   methods: {
     closeSideNav() {
       this.$emit('closeSideNav');
+    },
+    logOut() {
+      axios
+        .get(`${config.url}/api/users/logout`, {
+          withCredentials: true,
+        })
+        .then(() => {
+          this.$router.push('/');
+        });
     },
   },
   mounted() {

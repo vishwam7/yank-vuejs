@@ -38,6 +38,11 @@ router.post('/api/buyNow/:id', authController.protect, products.subscribe);
 /**
  * @description Admin route, used to get a list of all users
  */
+router.get('/api/users/logout', authController.protect, authController.logOut);
+
+/**
+ * @description Admin route, used to get a list of all users
+ */
 router.get(
   '/api/admin/users',
   authController.protect,

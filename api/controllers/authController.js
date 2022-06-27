@@ -129,6 +129,16 @@ exports.protect = catchAsync(async (req, _res, next) => {
   next();
 });
 
+exports.logOut = catchAsync(async (req, res) => {
+  if (req.cookies.jwt) {
+    res.clearCookie('jwt');
+  }
+  return res.status(200).json({
+    success: true,
+    msg: 'You have been logged out',
+  });
+});
+
 exports.restrictTo = (...roles) => {
   return (req, _res, next) => {
     // roles['admin', lead - guide].role='user'
