@@ -362,20 +362,19 @@ export default {
         })
         .then(() => {
           this.$router.push('/');
+          this.$router.go(0);
         });
     },
   },
   mounted() {
     axios
-      .get(`${config.url}/api/users/6228e338f2b308da1be09e1f`, {
+      .get(`${config.url}/api/users/me`, {
         withCredentials: true,
       })
       .then(response => {
-        // JSON responses are automatically parsed.
-        // console.log(response.data.data.data);
-        this.userName = response.data.data.data.name;
-        this.email = response.data.data.data.email;
-        this.role = response.data.data.data.role;
+        this.userName = response.data.data.name;
+        this.email = response.data.data.email;
+        this.role = response.data.data.role;
       })
       .catch(e => {
         this.errors.push(e);

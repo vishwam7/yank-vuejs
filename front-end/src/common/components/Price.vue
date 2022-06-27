@@ -24,7 +24,7 @@
         ><h4>{{ header }}</h4>
         <h4 class="home_txt">{{ link }}</h4></span
       ><br />
-      <p>{{ paragragh }}</p>
+      <p>{{ paragraph }}</p>
     </div>
     <div class="verRobos mb-5">
       <a
@@ -93,7 +93,7 @@
                 />
               </div>
             </div>
-            <div class="grid-item">{{ paragragh }}</div>
+            <div class="grid-item">{{ paragraph }}</div>
             <div class="grid-item"></div>
             <div class="grid-item"></div>
             <div class="grid-item"></div>
@@ -159,7 +159,7 @@ export default {
       type: String,
       required: true,
     },
-    paragragh: {
+    paragraph: {
       type: String,
       required: true,
     },

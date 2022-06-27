@@ -131,7 +131,13 @@ exports.protect = catchAsync(async (req, _res, next) => {
 
 exports.logOut = catchAsync(async (req, res) => {
   if (req.cookies.jwt) {
-    res.clearCookie('jwt');
+    res.cookie('jwt', '', {
+      maxAge: 30000,
+      httpOnly: true,
+      sameSite: 'lax',
+      domain: process.env.JWT_COOKIE_CORS_DOMAIN,
+      secure: false,
+    });
   }
   return res.status(200).json({
     success: true,

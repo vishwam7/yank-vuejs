@@ -1,7 +1,7 @@
 <template>
-  <CardCustom image="media/site-images/flash" price="55" bill="mi" paragragh="requisições neste mês" />
-  <CardCustom image="media/site-images/bill" price="R$ 3.650" bill=",86" paragragh="requisições neste mês" />
-  <CardCustom image="media/site-images/refund" price="R$ 506" bill=",00" paragragh="requisições neste mês" />
+  <CardCustom image="media/site-images/flash" price="55" bill="mi" paragraph="requisições neste mês" />
+  <CardCustom image="media/site-images/bill" price="R$ 3.650" bill=",86" paragraph="requisições neste mês" />
+  <CardCustom image="media/site-images/refund" price="R$ 506" bill=",00" paragraph="requisições neste mês" />
   <div class="col-md-12 col-12">
     <div class="card card-custom mt-5">
       <div class="card-header w-100">

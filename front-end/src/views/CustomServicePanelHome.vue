@@ -46,7 +46,7 @@
                 :category="price.category"
                 :header="price.header"
                 :link="price.link"
-                :paragragh="price.paragragh"
+                :paragraph="price.paragraph"
                 :favorite="price.favorite"
                 :online="price.online"
               />
