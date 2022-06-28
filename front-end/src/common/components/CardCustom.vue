@@ -3,7 +3,9 @@
     <div class="card card-custom">
       <div class="d-flex row">
         <div class="symbol-img flash p-5 pl-10 pt-10">
-          <span class="symbol"><img :src="'/' + image + '.png'" /></span>
+          <span class="symbol"
+            ><img :src="image" height="128" width="128"
+          /></span>
         </div>
         <div class="p-5 flash_txt">
           <span class="mr-1">{{ price }}</span

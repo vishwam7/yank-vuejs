@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="price-img">
-      <img :src="require('@/assets/' + image + '.png')" /><br />
+      <img :src="image" height="128" width="128" /><br />
       <span>{{ category }}</span>
     </div>
     <br />
@@ -43,7 +43,7 @@
         <template #body>
           <div class="grid-container">
             <div class="grid-item">
-              <img :src="require('@/assets/' + image + '.png')" class="test" />
+              <img :src="image" height="128" width="128" class="test" />
             </div>
             <div class="grid-item">
               <div class="input-group mb-3">
