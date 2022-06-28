@@ -25,6 +25,7 @@ exports.registerProduct = catchAsync(async (req, res) => {
     favorite: req.body.favorite,
     activeProduct: req.body.activeProduct,
     stripeProductID: product.id,
+    online: true,
   });
 
   return res.status(201).json({
