@@ -97,17 +97,26 @@
         <!--end::Quick panel-->
         <!--end::Chat-->
         <!--begin::User-->
-        <div class="topbar-item">
+        <div class="dropdown" v-if="display === 'button'">
+          <!--begin::Toggle-->
           <div
-            class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2"
+            class="topbar-item"
+            data-toggle="dropdown"
+            data-offset="10px,0px"
+            aria-expanded="false"
             v-if="showLogin"
           >
-            <span
-              class="symbol symbol-lg-40 symbol-25 symbol-light-success btn btn-icon btn-square w-auto btn-clean text-black btn-active border p-4 border-dark"
+            <button
+              class="btn btn-orange"
+              v-on:click="this.$router.push('/login')"
             >
-              <a href="/login">login</a>
-            </span>
+              Login
+            </button>
           </div>
+          <!--end::Toggle-->
+          <!--begin::Dropdown-->
+
+          <!--end::Dropdown-->
         </div>
         <div class="topbar-item">
           <div
