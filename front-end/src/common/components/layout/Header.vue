@@ -100,6 +100,18 @@
         <div class="topbar-item">
           <div
             class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2"
+            v-if="showLogin"
+          >
+            <span
+              class="symbol symbol-lg-40 symbol-25 symbol-light-success btn btn-icon btn-square w-auto btn-clean text-black btn-active border p-4 border-dark"
+            >
+              <a href="/login">login</a>
+            </span>
+          </div>
+        </div>
+        <div class="topbar-item">
+          <div
+            class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2"
             @click="showSideNav"
           >
             <span class="symbol symbol-lg-40 symbol-25 symbol-light-success">
@@ -119,15 +131,22 @@
 </template>
 
 <script>
+import axios from 'axios';
+import config from '../../../config';
 export default {
   data() {
+    axios
+      .get(`${config.url}/api/users/me`, {
+        withCredentials: true,
+      })
+      .then(() => (this.showLogin = false))
+      .catch(() => (this.showLogin = true));
     return {
       display: 'empty',
+      showLogin: true,
     };
   },
-  mounted() {
-    // console.log(this.$route)
-  },
+  mounted() {},
   watch: {
     $route(newRoute) {
       // console.log(newRoute.meta.header);

@@ -133,9 +133,12 @@ exports.logOut = catchAsync(async (req, res) => {
   if (req.cookies.jwt) {
     res.cookie('jwt', '', {
       maxAge: 30000,
-      httpOnly: true,
       sameSite: 'lax',
-      domain: process.env.JWT_COOKIE_CORS_DOMAIN,
+      httpOnly: true,
+      domain:
+        process.env.NODE_ENV === 'production'
+          ? process.env.JWT_COOKIE_CORS_DOMAIN
+          : 'localhost',
       secure: false,
     });
   }
